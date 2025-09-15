@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.tvnoe.cz"
-version="1.3.0"
+version="1.4.0"
 name="Televize NOE"
 provider-name="VincoNafta">
 <requires>
@@ -13,7 +13,7 @@ provider-name="VincoNafta">
 </extension>
 <extension point="xbmc.addon.metadata">
   <summary lang="cs">Doplnek pro archiv a živé vysílaní Televize NOE</summary>
-  <description lang="CZ">Plugin je pouze simulace prohlizece. Autor doplnku neručí za funkčnosť doplnku, celý doplnok je momentálne v experimentálnej fázy vývoja. Možné pripomienky na fore xbmc-kodi.cz</description>
+  <description lang="CZ">Možné pripomienky na fore xbmc-kodi.cz</description>
   <assets>
     <icon>icon.png</icon>
   </assets>
@@ -22,6 +22,7 @@ provider-name="VincoNafta">
       1.1.0 - Doložené API, stream sa získava už priamo z TV NOE
       1.2.0 - Zmena API, streamy sa čerpaju z json objektu stream, pridané logá liveStreamov
       1.3.0 - Pridane EPG
+      1.4.0 - Reštrukutualizácia Archívu
   </news>
 </extension>
 </addon>
