@@ -1,22 +1,20 @@
 # -*- coding: utf-8 -*-
 # Module: default
 # Author: Roman V. M., VincoNafta
-# Created on: 28.11.2014
 # License: GPL v.3 https://www.gnu.org/copyleft/gpl.html
 
-import sys
-from urllib.parse import urlencode
-from urllib.parse import parse_qsl
-import urllib3
-import re
 import json
+import re
+import sys
 from datetime import datetime, timezone
+from urllib.parse import parse_qsl
+from urllib.parse import urlencode
 
+import urllib3
 import xbmc
-from bs4 import BeautifulSoup
-
 import xbmcgui
 import xbmcplugin
+from bs4 import BeautifulSoup
 
 _url = sys.argv[0]
 _handle = int(sys.argv[1])
@@ -83,7 +81,7 @@ def getLiveIcon(channel_name, api_reference):
 
 
 def list_categories():
-    xbmcplugin.setPluginCategory(_handle, 'Abecedni vyhledavani')
+    xbmcplugin.setPluginCategory(_handle, 'Televize Noe')
     xbmcplugin.setContent(_handle, 'videos')
 
     live_stream_api = json.loads(search("https://api.tvnoe.cz/live").data)
@@ -101,6 +99,17 @@ def list_categories():
         list_item.setProperty('IsPlayable', 'true')
 
         xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
+
+    list_item = xbmcgui.ListItem(label="Videoteka A-Z")
+    url = get_url(action='archive')
+    list_item.setProperty('IsPlayable', 'false')
+    xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
+    xbmcplugin.endOfDirectory(_handle)
+
+
+def list_archive():
+    xbmcplugin.setPluginCategory(_handle, 'Videotéka A-Z')
+    xbmcplugin.setContent(_handle, 'videos')
 
     for category in ALPHABET:
         list_item = xbmcgui.ListItem(label=category)
@@ -188,6 +197,8 @@ def router(paramstring):
             list_episodes(params['show_url'])
         elif params['action'] == 'play_stream':
             play_stream(params['stream'])
+        elif params['action'] == 'archive':
+            list_archive()
         elif params['action'] == 'play':
             play_video(params['video'])
         else:
