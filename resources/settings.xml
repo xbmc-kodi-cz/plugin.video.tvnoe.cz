@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <category label="Klubová Zóna">
+        <setting label="Email" type="text" id="email" default=""/>
+        <setting label="Heslo" type="text" id="password" option="hidden" default=""/>
+    </category>
+</settings>

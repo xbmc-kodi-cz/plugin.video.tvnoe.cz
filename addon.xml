@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.tvnoe.cz"
-version="1.4.0"
+version="1.5.1"
 name="Televize NOE"
 provider-name="VincoNafta">
 <requires>

@@ -12,8 +12,11 @@ from urllib.parse import urlencode
 
 import urllib3
 import xbmc
+import xbmcaddon
 import xbmcgui
 import xbmcplugin
+
+import lib.login as login
 from bs4 import BeautifulSoup
 
 _url = sys.argv[0]
@@ -104,8 +107,14 @@ def list_categories():
     url = get_url(action='archive')
     list_item.setProperty('IsPlayable', 'false')
     xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
-    xbmcplugin.endOfDirectory(_handle)
 
+    if xbmcaddon.Addon().getSetting('email') != "" and xbmcaddon.Addon().getSetting('password') != "":
+        stream_url = login.try_login(xbmcaddon.Addon().getSetting('email'),xbmcaddon.Addon().getSetting('password'))
+        list_item = xbmcgui.ListItem(label="[Klubová Zóna] Noe ŽIVE")
+        url = get_url(action='play_stream', stream=stream_url)
+        list_item.setProperty('IsPlayable', 'true')
+        xbmcplugin.addDirectoryItem(_handle, url, list_item, False)
+    xbmcplugin.endOfDirectory(_handle)
 
 def list_archive():
     xbmcplugin.setPluginCategory(_handle, 'Videotéka A-Z')
